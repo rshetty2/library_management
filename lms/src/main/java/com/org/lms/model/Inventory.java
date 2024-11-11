@@ -9,12 +9,30 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 
 public class Inventory {
+    private static Inventory inventory;
+
+    private Inventory() {
+
+    }
+
     @Getter
-    private HashMap<String, Book> books;
+    private ConcurrentHashMap<String, Book> books = new ConcurrentHashMap<>();
+
+    public static Inventory getInventory() {
+        if (inventory == null) {
+            synchronized (Inventory.class) {
+                if(inventory == null) {
+                    inventory = new Inventory();
+                }
+            }
+        }
+        return inventory;
+    }
 
     public void add(Book book) {
         books.put(bookKey(book),book);
