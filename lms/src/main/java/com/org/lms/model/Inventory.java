@@ -57,17 +57,6 @@ public class Inventory {
                 () -> {throw new CustomException("Book not found");}
         );
 
-
-//        Optional<Book> bookInInventory = search(book);
-//        bookInInventory.ifPresent
-//        if (bookInInventory != null) {
-//            int availableQuantity = bookInInventory.getAvailableQuantity();
-//            if (availableQuantity < 0)
-//                throw new CustomException("Not enough books in inventory");
-//            bookInInventory.setAvailableQuantity(availableQuantity - 1);
-//            return "Successfully Borrowed";
-//        }
-//        throw new CustomException("Book not found");
     }
 
     public Optional<Book> search(Book book) {
